@@ -1,14 +1,14 @@
 #include "DrawableComponent.h"
 
 
-DrawableComponent::DrawableComponent(sf::RenderWindow *window, std::string filePath)
+DrawableComponent::DrawableComponent(sf::RenderWindow &window, std::string filePath)
 {
-	mWindow = window;
+	mWindow = &window;
 	mTexture.loadFromFile(filePath);
 	mSprite.setTexture(mTexture);
 }
 
-void DrawableComponent::update(sf::Vector2f position)
+void DrawableComponent::update(sf::Vector2f &position)
 {
 	mSprite.setPosition(position);
 }

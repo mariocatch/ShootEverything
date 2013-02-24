@@ -2,6 +2,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Cursor.h"
+#include "Player.h"
 
 int main()
 {
@@ -18,9 +19,15 @@ int main()
 	sf::Sprite bgSprite;
 	bgSprite.setTexture(bgTexture);
 
+	Player player(
+		new DrawableComponent(gameWindow, "Assets/spaceman.png"), 
+		new PositionComponent(sf::Vector2f(10, 700)),
+		new PlayerInputComponent(),
+		new MovableComponent(sf::Vector2f(150, 150)));
+
 	Cursor customCursor(
-		new DrawableComponent(&gameWindow, "Assets/spaceCursor.png"), 
-		new PositionComponent(),
+		new DrawableComponent(gameWindow, "Assets/spaceCursor.png"), 
+		new PositionComponent(sf::Vector2f(0, 0)),
 		new MouseComponent());
 
 	while (gameWindow.isOpen())
@@ -34,6 +41,9 @@ int main()
 		}
 
 		gameWindow.draw(bgSprite);
+
+		player.update(gameTime);
+		player.draw();
 
 		customCursor.update();
 		customCursor.draw();
