@@ -11,3 +11,17 @@ void Game::destroyEntity(Entity &entity)
 {
 	mEntities.remove(&entity);
 }
+
+void Game::shutdown()
+{
+	std::list<Entity*>::iterator entityIter = mEntities.begin();
+	for(entityIter; entityIter != mEntities.end(); entityIter)
+	{
+		entityIter = mEntities.erase(entityIter);
+	}
+
+	if(sInstance)
+	{
+		delete sInstance;
+	}
+}

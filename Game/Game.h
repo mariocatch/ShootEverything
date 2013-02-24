@@ -8,7 +8,7 @@
 class Game
 {
 public:
-	static Game* GetInstance()
+	static Game* getInstance()
 	{
 		if(!sInstance)
 		{
@@ -18,20 +18,16 @@ public:
 		return sInstance;
 	}
 
-	~Game(void)
-	{ 
-		if(sInstance)
-		{
-			delete sInstance;
-		}
-	}
+	~Game(void) { }
 
+	void shutdown();
 	void addEntity(Entity &entity);
 	void destroyEntity(Entity &entity);
 	std::list<Entity*> &getEntities() { return mEntities; }
 
 private:
 	static Game* sInstance;
+
 	Game(void) { }
 	std::list<Entity *> mEntities;
 };
