@@ -10,6 +10,6 @@ public:
 	MouseComponent () { }
 	~MouseComponent (void) { }
 
-	void update(sf::RenderWindow &window);
+	void update();
 	sf::Vector2f &getPosition() { return mPosition; }
 };

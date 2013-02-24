@@ -5,10 +5,9 @@
 class DrawableComponent
 {
 public:
-	DrawableComponent(sf::RenderWindow &window, std::string filePath);
+	DrawableComponent(std::string filePath);
 	~DrawableComponent(void) { }
 
-	sf::RenderWindow &getWindow() { return *mWindow; }
 	sf::Sprite getSprite() { return mSprite; }
 	void setSprite(sf::Sprite sprite) { mSprite = sprite; }
 	void setOrigin(sf::Vector2f originCoordinates) { mOriginCoordinates = originCoordinates; }
@@ -19,5 +18,4 @@ private:
 	sf::Sprite mSprite;
 	sf::Texture mTexture;
 	sf::Vector2f mOriginCoordinates;
-	sf::RenderWindow *mWindow;
 };

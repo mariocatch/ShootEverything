@@ -5,16 +5,13 @@
 #include <chrono>
 #include <thread>
 
+#include "Game.h"
 #include "Cursor.h"
 #include "Player.h"
-#include "Game.h"
 
 int main()
 {
-	// Window setup.
-	sf::RenderWindow gameWindow(sf::VideoMode(1024, 768), "ShootEverything", 1);
-	gameWindow.setVerticalSyncEnabled(true);
-	gameWindow.setMouseCursorVisible(false);
+	Game::getInstance()->start();
 
 	// Frame timing.
 	sf::Clock gameClock;
@@ -28,35 +25,37 @@ int main()
 	bgSprite.setTexture(bgTexture);
 
 	// Create Entities.
-	Player player(
-		new DrawableComponent(gameWindow, "Assets/spaceman.png"), 
-		new PositionComponent(sf::Vector2f(10, 700)),
-		new PlayerInputComponent(),
-		new MovableComponent(sf::Vector2f(150, 150)));
-
 	Cursor customCursor(
-		new DrawableComponent(gameWindow, "Assets/spaceCursor.png"), 
+		new DrawableComponent("Assets/spaceCursor.png"), 
 		new PositionComponent(sf::Vector2f(0, 0)),
 		new MouseComponent());
 
+	Player player(
+		new DrawableComponent("Assets/spaceman.png"), 
+		new PositionComponent(sf::Vector2f(10, 700)),
+		new PlayerInputComponent(),
+		new MovableComponent(sf::Vector2f(150, 150)),
+		new MouseComponent(),
+		new GunComponent());
+
 	// Add Entities to game manager.
-	Game::getInstance()->addEntity(player);
-	Game::getInstance()->addEntity(customCursor);
+	Game::getInstance()->addEntity(&player);
+	Game::getInstance()->addEntity(&customCursor);
 
 	// Game loop.
-	while (gameWindow.isOpen())
+	while (Game::getInstance()->getWindow().isOpen())
 	{
-		while (gameWindow.pollEvent(gameEvents)) 
+		while (Game::getInstance()->getWindow().pollEvent(gameEvents)) 
 		{
 			// Close game on Escape.
 			if ((gameEvents.type == sf::Event::KeyPressed && gameEvents.key.code == sf::Keyboard::Escape) || (gameEvents.type == sf::Event::Closed))
 			{
-				gameWindow.close();
+				Game::getInstance()->getWindow().close();
 			}
 		}
 
 		// Draw background.
-		gameWindow.draw(bgSprite);
+		Game::getInstance()->getWindow().draw(bgSprite);
 
 		// Update/Draw each Entity.
 		std::list<Entity*>::iterator entityIter = Game::getInstance()->getEntities().begin();
@@ -66,8 +65,8 @@ int main()
 			(*entityIter)->draw();
 		}
 
-		gameWindow.display();
-		gameWindow.clear(sf::Color::White);
+		Game::getInstance()->getWindow().display();
+		Game::getInstance()->getWindow().clear(sf::Color::White);
 
 		gameTime = gameClock.restart().asSeconds();
 

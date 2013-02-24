@@ -18,17 +18,26 @@ public:
 		return sInstance;
 	}
 
-	~Game(void) { }
+	~Game(void) 
+	{
+		if(mWindow)
+		{
+			delete mWindow;
+		}
+	}
 
+	void start();
 	void shutdown();
-	void addEntity(Entity &entity);
-	void destroyEntity(Entity &entity);
+	void addEntity(Entity *entity);
+	void destroyEntity(Entity *entity);
 	std::list<Entity*> &getEntities() { return mEntities; }
+	sf::RenderWindow& getWindow() { return *mWindow; }
 
 private:
 	static Game* sInstance;
 
 	Game(void) { }
 	std::list<Entity *> mEntities;
+	sf::RenderWindow *mWindow;
 };
 

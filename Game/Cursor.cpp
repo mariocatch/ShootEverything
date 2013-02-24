@@ -20,7 +20,7 @@ Cursor::~Cursor(void)
 
 void Cursor::update(float t) {
 	// Update the MouseComponent's position.
-	mMouseComponent->update(mDrawableComponent->getWindow());
+	mMouseComponent->update();
 
 	// Update the Cursor's PositionComponent's position based off the MouseComponent's position.
 	mPositionComponent->update(mMouseComponent->getPosition());

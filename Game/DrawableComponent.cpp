@@ -1,9 +1,8 @@
 #include "DrawableComponent.h"
+#include "Game.h"
 
-
-DrawableComponent::DrawableComponent(sf::RenderWindow &window, std::string filePath)
+DrawableComponent::DrawableComponent(std::string filePath)
 {
-	mWindow = &window;
 	mTexture.loadFromFile(filePath);
 	mSprite.setTexture(mTexture);
 }
@@ -15,5 +14,5 @@ void DrawableComponent::update(sf::Vector2f &position)
 
 void DrawableComponent::draw()
 {
-	mWindow->draw(mSprite);
+	Game::getInstance()->getWindow().draw(mSprite);
 }

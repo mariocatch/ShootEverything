@@ -2,14 +2,21 @@
 
 Game* Game::sInstance = NULL;
 
-void Game::addEntity(Entity &entity)
+void Game::start()
 {
-	mEntities.push_back(&entity);
+	mWindow = new sf::RenderWindow(sf::VideoMode(1024, 768), "ShootEverything", 1);
+	mWindow->setVerticalSyncEnabled(true);
+	mWindow->setMouseCursorVisible(false);
 }
 
-void Game::destroyEntity(Entity &entity)
+void Game::addEntity(Entity *entity)
 {
-	mEntities.remove(&entity);
+	mEntities.push_back(entity);
+}
+
+void Game::destroyEntity(Entity *entity)
+{
+	mEntities.remove(entity);
 }
 
 void Game::shutdown()

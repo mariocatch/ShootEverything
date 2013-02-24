@@ -1,6 +1,6 @@
 #include "PlayerInputComponent.h"
 
-void PlayerInputComponent::update(sf::Vector2f &position, sf::Vector2f &velocity, float t )
+void PlayerInputComponent::update(sf::Vector2f &position, sf::Vector2f &velocity, float t)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -11,5 +11,10 @@ void PlayerInputComponent::update(sf::Vector2f &position, sf::Vector2f &velocity
 	{
 		// Move right.
 		position.x += velocity.x * t;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		// Fire.
+		mHasFired = true;
 	}
 }

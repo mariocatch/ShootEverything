@@ -8,5 +8,9 @@ public:
 	~PlayerInputComponent(void) { }
 
 	void update(sf::Vector2f &position, sf::Vector2f &velocity, float t);
+	bool& getHasFired() { return mHasFired; }
+
+private:
+	bool mHasFired;
 };
 

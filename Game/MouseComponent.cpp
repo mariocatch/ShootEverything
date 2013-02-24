@@ -1,5 +1,6 @@
 #include "MouseComponent.h"
+#include "Game.h"
 
-void MouseComponent::update(sf::RenderWindow &window) {
-	mPosition = sf::Vector2f(sf::Mouse::getPosition(window));
+void MouseComponent::update() {
+	mPosition = sf::Vector2f(sf::Mouse::getPosition(Game::getInstance()->getWindow()));
 }

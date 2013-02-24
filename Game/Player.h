@@ -4,6 +4,8 @@
 #include "DrawableComponent.h"
 #include "PlayerInputComponent.h"
 #include "MovableComponent.h"
+#include "MouseComponent.h"
+#include "GunComponent.h"
 
 class Player : public Entity {
 public:
@@ -11,11 +13,15 @@ public:
 		DrawableComponent *drawableComponent, 
 		PositionComponent *positionComponent, 
 		PlayerInputComponent *playerInputComponent,
-		MovableComponent *movableComponent) : 
+		MovableComponent *movableComponent,
+		MouseComponent *mouseComponent,
+		GunComponent *gunComponent) : 
 			mDrawableComponent(drawableComponent), 
 			mPositionComponent(positionComponent),
 			mPlayerInputComponent(playerInputComponent),
-			mMovableComponent(movableComponent)
+			mMovableComponent(movableComponent),
+			mMouseComponent(mouseComponent),
+			mGunComponent(gunComponent)
 	{
 
 	}
@@ -30,5 +36,7 @@ private:
 	DrawableComponent *mDrawableComponent;
 	PlayerInputComponent *mPlayerInputComponent;
 	MovableComponent *mMovableComponent;
+	MouseComponent *mMouseComponent;
+	GunComponent *mGunComponent;
 };
 
