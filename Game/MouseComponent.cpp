@@ -2,6 +2,7 @@
 
 MouseComponent::~MouseComponent(void)
 {
+	
 }
 
 void MouseComponent::update(sf::RenderWindow &window) {

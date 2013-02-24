@@ -13,7 +13,7 @@ Cursor::~Cursor(void)
 	}
 }
 
-void Cursor::update() {
+void Cursor::update(float t) {
 	mMouseComponent->update(mDrawableComponent->getWindow());
 	mPositionComponent->update(mMouseComponent->getPosition());
 	mDrawableComponent->update(mPositionComponent->getPosition());

@@ -1,10 +1,11 @@
 #pragma once
+#include "Entity.h"
 #include "PositionComponent.h"
 #include "DrawableComponent.h"
 #include "PlayerInputComponent.h"
 #include "MovableComponent.h"
 
-class Player {
+class Player : public Entity {
 public:
 	Player(
 		DrawableComponent *drawableComponent, 

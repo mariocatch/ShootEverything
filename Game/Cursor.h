@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 #include "PositionComponent.h"
 #include "DrawableComponent.h"
 #include "MouseComponent.h"
 
 
-class Cursor {
+class Cursor : public Entity {
 public:
 	Cursor(DrawableComponent *drawableComponent, PositionComponent *positionComponent, MouseComponent* mouseComponent) : 
 		mDrawableComponent(drawableComponent), 
@@ -19,7 +20,7 @@ public:
 
 	~Cursor(void);
 
-	void update();
+	void update(float t);
 	void draw();
 
 private:

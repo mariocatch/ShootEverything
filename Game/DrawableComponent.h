@@ -21,4 +21,3 @@ private:
 	sf::Vector2f mOriginCoordinates;
 	sf::RenderWindow *mWindow;
 };
-

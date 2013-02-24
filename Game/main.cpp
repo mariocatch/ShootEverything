@@ -3,6 +3,7 @@
 #include <SFML/Window.hpp>
 #include "Cursor.h"
 #include "Player.h"
+#include "Game.h"
 
 int main()
 {
@@ -24,11 +25,13 @@ int main()
 		new PositionComponent(sf::Vector2f(10, 700)),
 		new PlayerInputComponent(),
 		new MovableComponent(sf::Vector2f(150, 150)));
+	Game::GetInstance()->addEntity(player);
 
 	Cursor customCursor(
 		new DrawableComponent(gameWindow, "Assets/spaceCursor.png"), 
 		new PositionComponent(sf::Vector2f(0, 0)),
 		new MouseComponent());
+	Game::GetInstance()->addEntity(customCursor);
 
 	while (gameWindow.isOpen())
 	{
@@ -42,11 +45,12 @@ int main()
 
 		gameWindow.draw(bgSprite);
 
-		player.update(gameTime);
-		player.draw();
-
-		customCursor.update();
-		customCursor.draw();
+		std::list<Entity*>::iterator entityIter = Game::GetInstance()->getEntities().begin();
+		for(entityIter; entityIter != Game::GetInstance()->getEntities().end(); entityIter++)
+		{
+			(*entityIter)->update(gameTime);
+			(*entityIter)->draw();
+		}
 
 		gameWindow.display();
 		gameWindow.clear(sf::Color::White);
@@ -55,6 +59,9 @@ int main()
 		sf::sleep(sf::milliseconds(10));
 
 	} // End window is open
+
+	Game::GetInstance()->destroyEntity(player);
+	Game::GetInstance()->destroyEntity(customCursor);
 
 	return 0;
 }
