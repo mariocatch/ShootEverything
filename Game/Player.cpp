@@ -24,10 +24,14 @@ Player::~Player(void)
 }
 
 void Player::update(float t) {
+	// Update the PlayerInputComponent (input handler) based off the Player's current position and velocity.
 	mPlayerInputComponent->update(mPositionComponent->getPosition(), mMovableComponent->getVelocity(), t);
+
+	// Update the Drawable objects of the Player (sprite/texture/etc).
 	mDrawableComponent->update(mPositionComponent->getPosition());
 }
 
-void Player::draw() {	
+void Player::draw() {
+	// Draw everything about the Cursor.
 	mDrawableComponent->draw();
 }

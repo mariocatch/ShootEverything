@@ -5,17 +5,17 @@
 #include "DrawableComponent.h"
 #include "MouseComponent.h"
 
-
+// Mouse cursor
 class Cursor : public Entity {
-public:
+public:	
 	Cursor(DrawableComponent *drawableComponent, PositionComponent *positionComponent, MouseComponent* mouseComponent) : 
 		mDrawableComponent(drawableComponent), 
 		mPositionComponent(positionComponent),
 		mMouseComponent(mouseComponent)
 	{
 		mDrawableComponent->setOrigin(
-		mDrawableComponent->getSprite().getGlobalBounds().width / 2, 
-		mDrawableComponent->getSprite().getGlobalBounds().height / 2);
+			mDrawableComponent->getSprite().getGlobalBounds().width / 2, 
+			mDrawableComponent->getSprite().getGlobalBounds().height / 2);
 	}
 
 	~Cursor(void);
