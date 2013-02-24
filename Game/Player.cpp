@@ -32,6 +32,6 @@ void Player::update(float t) {
 }
 
 void Player::draw() {
-	// Draw everything about the Cursor.
+	// Draw everything about the Player.
 	mDrawableComponent->draw();
 }
